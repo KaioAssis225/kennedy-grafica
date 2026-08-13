@@ -643,15 +643,6 @@ a { text-decoration: none; color: inherit; }
 }
 .foot-tag { margin-top: 12px; font-size: 0.86rem; color: var(--on-green-soft); max-width: 42ch; }
 .foot-legal { font-size: 0.82rem; color: var(--on-green-soft); line-height: 1.7; }
-.foot-link {
-  display: inline-block;
-  margin-bottom: 8px;
-  color: var(--on-green);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: 600;
-}
-.foot-link:hover { color: #ffd27a; }
 
 /* ===== WHATSAPP FLOAT ===== */
 .wa-float {
