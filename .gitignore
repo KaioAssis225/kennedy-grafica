@@ -1,0 +1,5 @@
+.impeccable/
+.claude/settings.local.json
+.codex/
+__pycache__/
+*.pyc

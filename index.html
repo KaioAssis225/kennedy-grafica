@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kennedy Gráfica Rápida & Papelaria — Indaiatuba/SP</title>
+  <meta name="description" content="Impressão, plotagem, fotos 3x4, revelação de fotos, cartão de visita, adesivos, rótulos e papelaria — na hora, em Indaiatuba/SP. Atendimento presencial e por WhatsApp.">
+  <meta name="theme-color" content="#0C5230">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+  <!-- Leaflet.js OpenSource Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--
+  DESIGN CONTRACT — Amostra de Papel  (seed cd96b739 · direction #3 of grounded list)
+  THESIS: A print shop shown in its own material — the paper-swatch fan and the trimmed
+    stack — not the category-default logo-hero + photo-card grid it replaces.
+  OWN-WORLD: Warm paper ground; brand green owns whole fields (hero, pitch, footer); ink
+    near-black text; each service is a paper "swatch" with its own stock-color chip edge and
+    tracked spec tags. Bricolage Grotesque display + Archivo text. Guillotine cut-lines as
+    dividers; corner crop marks. No photos, no gradient text, no glass.
+  STORY: Visitor sees a real, fast, local gráfica; grasps the full range at a glance grouped
+    "na hora" vs "sob medida & empresas"; acts by tapping WhatsApp or heading to the counter.
+  FIRST VIEWPORT: Deep-green field, corner crop marks, "Kennedy" oversize in paper white,
+    one-line promise, Indaiatuba + hours facts, primary WhatsApp action + "Ver serviços".
+  FORM: Paper-swatch / guillotine-stack world; candidate #3, resonance-ordered; seed cd96b739.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+-->
+
+  <a class="skip-link" href="#servicos">Pular para os serviços</a>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#topo" class="brand" aria-label="Kennedy Gráfica Rápida e Papelaria — início">
+        <img src="img/header-logo.png" alt="" class="brand-logo" width="34" height="34">
+        <span class="brand-name">Kennedy<span class="brand-sub">Gráfica &amp; Papelaria</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Seções">
+        <a href="#servicos" class="nav-link">Serviços</a>
+        <a href="#onde" class="nav-link">Onde estamos</a>
+        <a href="https://wa.me/551938251616?text=Oi%2C%20vim%20do%20site%20da%20Kennedy%20Gr%C3%A1fica%20R%C3%A1pida%20e%20Papelaria.%20Preciso%20de%20atendimento%20para%20resolver%20uma%20demanda%20de%20impress%C3%A3o%2C%20papelaria%20ou%20material%20gr%C3%A1fico." target="_blank" rel="noopener" class="nav-link nav-link--wa">WhatsApp</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sheet">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE SHEET -->
+  <div class="sheet-overlay" id="sheetOverlay" hidden></div>
+  <aside class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheet-top">
+      <span class="brand-name brand-name--dark">Kennedy<span class="brand-sub">Gráfica &amp; Papelaria</span></span>
+      <button class="sheet-close" id="sheetClose" aria-label="Fechar menu">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="sheet-nav" aria-label="Seções">
+      <a href="#servicos" class="sheet-link">Serviços</a>
+      <a href="#onde" class="sheet-link">Onde estamos</a>
+    </nav>
+    <a href="https://wa.me/551938251616?text=Oi%2C%20vim%20do%20site%20da%20Kennedy%20Gr%C3%A1fica%20R%C3%A1pida%20e%20Papelaria.%20Preciso%20de%20atendimento%20para%20resolver%20uma%20demanda%20de%20impress%C3%A3o%2C%20papelaria%20ou%20material%20gr%C3%A1fico." target="_blank" rel="noopener" class="btn btn--wa sheet-cta">Falar no WhatsApp</a>
+    <p class="sheet-foot">Av. Pres. Kennedy, 826 — Indaiatuba/SP</p>
+  </aside>
+
+  <main id="topo">
+    <!-- HERO -->
+    <section class="hero">
+      <span class="crop crop--tl" aria-hidden="true"></span>
+      <span class="crop crop--tr" aria-hidden="true"></span>
+      <span class="crop crop--bl" aria-hidden="true"></span>
+      <span class="crop crop--br" aria-hidden="true"></span>
+      <div class="hero-inner">
+        <p class="hero-place reveal">Indaiatuba/SP · Gráfica rápida &amp; papelaria</p>
+        <h1 class="hero-title reveal">Kennedy</h1>
+        <p class="hero-promise reveal">Impressão, plotagem, fotos e papelaria — <em>na hora</em>, pertinho de você.</p>
+        <div class="hero-actions reveal">
+          <a href="https://wa.me/551938251616?text=Oi%2C%20vim%20do%20site%20da%20Kennedy%20Gr%C3%A1fica%20R%C3%A1pida%20e%20Papelaria.%20Preciso%20de%20atendimento%20para%20resolver%20uma%20demanda%20de%20impress%C3%A3o%2C%20papelaria%20ou%20material%20gr%C3%A1fico." target="_blank" rel="noopener" class="btn btn--wa btn--lg">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.002-5.45 4.437-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#servicos" class="btn btn--ghost btn--lg">Ver serviços</a>
+        </div>
+        <dl class="hero-facts reveal">
+          <div class="fact"><dt>Onde</dt><dd>Av. Pres. Kennedy, 826 — Cidade Nova I</dd></div>
+          <div class="fact"><dt>Horário</dt><dd>Seg–Sex 8:15–18h · Sáb 9–13h</dd></div>
+          <div class="fact"><dt>Resposta</dt><dd>Rápida, no WhatsApp ou no balcão</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="servicos">
+      <div class="wrap">
+        <div class="cutline" aria-hidden="true">
+          <span class="cutline-label">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+            corte aqui
+          </span>
+        </div>
+
+        <header class="band-head reveal">
+          <h2 class="band-title">Tudo o que sai da nossa gráfica</h2>
+          <p class="band-sub">De uma foto 3x4 a um metro linear de plotagem. Um balcão só, resolvido na hora.</p>
+        </header>
+
+        <h3 class="group-title reveal"><span class="group-mark" aria-hidden="true"></span>Na hora, no balcão</h3>
+        <div class="swatches swatches--n4">
+          <article class="swatch reveal" style="--chip:#168249">
+            <div class="swatch-chip"><span class="swatch-stock">Verde 168</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Impressão</h4>
+              <p class="swatch-desc">Colorida e preto e branco, com rapidez e qualidade.</p>
+              <ul class="spec"><li>Colorida</li><li>P&amp;B</li><li>Na hora</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/impressao.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Impressão</figcaption>
+            </figure>
+          </article>
+          <article class="swatch reveal" style="--chip:#C0392B">
+            <div class="swatch-chip"><span class="swatch-stock">Vermelho 32</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Fotos 3x4</h4>
+              <p class="swatch-desc">Prontas na hora, sem espera, para documentos.</p>
+              <ul class="spec"><li>3×4</li><li>5×5</li><li>7×5</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/fotos3x4.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Fotos 3×4</figcaption>
+            </figure>
+          </article>
+          <article class="swatch reveal" style="--chip:#E8A33D">
+            <div class="swatch-chip"><span class="swatch-stock">Âmbar 08</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Fotos &amp; revelação</h4>
+              <p class="swatch-desc">Do padrão 10x15 ao tamanho que você quiser.</p>
+              <ul class="spec"><li>10×15</li><li>Ampliações</li><li>Revelação</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/fotos.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Fotos &amp; revelação</figcaption>
+            </figure>
+          </article>
+          <article class="swatch reveal" style="--chip:#B8902A">
+            <div class="swatch-chip"><span class="swatch-stock">Mostarda 90</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Material de escritório</h4>
+              <p class="swatch-desc">Linha completa de suprimentos escolares e de escritório.</p>
+              <ul class="spec"><li>Escolar</li><li>Escritório</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/material-escritorio.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Material de escritório</figcaption>
+            </figure>
+          </article>
+        </div>
+
+        <h3 class="group-title reveal"><span class="group-mark" aria-hidden="true"></span>Sob medida &amp; empresas</h3>
+        <div class="swatches swatches--n5">
+          <article class="swatch reveal" style="--chip:#1B1712">
+            <div class="swatch-chip"><span class="swatch-stock">Preto K</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Cartão de visita</h4>
+              <p class="swatch-desc">Sua empresa apresentável, do jeito certo.</p>
+              <ul class="spec"><li>Frente</li><li>Frente e verso</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/cartao-visita.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Cartão de visita</figcaption>
+            </figure>
+          </article>
+          <article class="swatch reveal" style="--chip:#C0397A">
+            <div class="swatch-chip"><span class="swatch-stock">Magenta 74</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Adesivos &amp; rótulos</h4>
+              <p class="swatch-desc">Personalize e dê um toque especial aos seus produtos.</p>
+              <ul class="spec"><li>Personalizado</li><li>Rótulos</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/adesivos-rotulos.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Adesivos &amp; rótulos</figcaption>
+            </figure>
+          </article>
+          <article class="swatch reveal" style="--chip:#127D6E">
+            <div class="swatch-chip"><span class="swatch-stock">Teal 46</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Adesivos de recorte</h4>
+              <p class="swatch-desc">Veículos, vidros, balcões e vitrines. Resistente a sol e chuva.</p>
+              <ul class="spec"><li>Uso externo</li><li>Recorte</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/adesivos-recorte.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Adesivos de recorte</figcaption>
+            </figure>
+          </article>
+          <article class="swatch reveal" style="--chip:#6D5AA6">
+            <div class="swatch-chip"><span class="swatch-stock">Violeta 58</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Banners &amp; fotos grandes</h4>
+              <p class="swatch-desc">Grandes formatos em papel fotográfico e alta qualidade.</p>
+              <ul class="spec"><li>Grande formato</li><li>Alta qualidade</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/banners-fotos.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Banners &amp; fotos</figcaption>
+            </figure>
+          </article>
+          <article class="swatch reveal" style="--chip:#1E7FA8">
+            <div class="swatch-chip"><span class="swatch-stock">Ciano 79</span></div>
+            <div class="swatch-body">
+              <h4 class="swatch-name">Plotagem</h4>
+              <p class="swatch-desc">Projetos e desenhos técnicos em grande escala.</p>
+              <ul class="spec"><li>A2</li><li>A1</li><li>Metro linear</li></ul>
+            </div>
+            <figure class="swatch-photo" aria-hidden="true">
+              <img src="img/plotagem.png" alt="" loading="lazy" decoding="async">
+              <figcaption>Plotagem</figcaption>
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PITCH BAND -->
+    <section class="pitch">
+      <span class="crop crop--tl" aria-hidden="true"></span>
+      <span class="crop crop--br" aria-hidden="true"></span>
+      <div class="wrap pitch-inner reveal">
+        <p class="pitch-lead">Loja física em Indaiatuba, com atendimento presencial e por WhatsApp.</p>
+        <p class="pitch-note">Também atendemos empresas — do cartão de visita à sinalização em adesivo de recorte.</p>
+        <a href="https://wa.me/551938251616?text=Oi%2C%20vim%20do%20site%20da%20Kennedy%20Gr%C3%A1fica%20R%C3%A1pida%20e%20Papelaria.%20Preciso%20de%20atendimento%20para%20resolver%20uma%20demanda%20de%20impress%C3%A3o%2C%20papelaria%20ou%20material%20gr%C3%A1fico." target="_blank" rel="noopener" class="btn btn--paper btn--lg">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.002-5.45 4.437-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Fale com a gente agora
+        </a>
+      </div>
+    </section>
+
+    <!-- ONDE ESTAMOS -->
+    <section class="local" id="onde">
+      <div class="wrap local-grid">
+        <div class="local-info reveal">
+          <h2 class="band-title">Onde estamos</h2>
+          <p class="local-addr">Avenida Presidente Kennedy, 826<br>Cidade Nova I — Indaiatuba/SP</p>
+          <dl class="hours">
+            <div class="hours-row"><dt>Segunda a sexta</dt><dd>8:15 às 18h</dd></div>
+            <div class="hours-row"><dt>Sábado</dt><dd>9h às 13h</dd></div>
+          </dl>
+          <div class="local-actions">
+            <a href="https://wa.me/551938251616?text=Oi%2C%20vim%20do%20site%20da%20Kennedy%20Gr%C3%A1fica%20R%C3%A1pida%20e%20Papelaria.%20Preciso%20de%20atendimento%20para%20resolver%20uma%20demanda%20de%20impress%C3%A3o%2C%20papelaria%20ou%20material%20gr%C3%A1fico." target="_blank" rel="noopener" class="btn btn--wa">Falar no WhatsApp</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=-23.0847,-47.2185" target="_blank" rel="noopener" class="btn btn--outline">Como chegar</a>
+          </div>
+        </div>
+        <div class="local-map reveal">
+          <div id="map" class="map-box"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-brand">
+        <span class="brand-name brand-name--paper">Kennedy<span class="brand-sub">Gráfica Rápida &amp; Papelaria</span></span>
+        <p class="foot-tag">Impressão · Plotagem · Fotos · Adesivos · Papelaria — Indaiatuba/SP</p>
+      </div>
+      <div class="foot-legal">
+        <a href="#" class="foot-link">Política de Privacidade</a>
+        <p>Razão Social: Papelaria Kennedy LTDA</p>
+        <p>CNPJ 30.532.696/0001-68</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/551938251616?text=Oi%2C%20vim%20do%20site%20da%20Kennedy%20Gr%C3%A1fica%20R%C3%A1pida%20e%20Papelaria.%20Preciso%20de%20atendimento%20para%20resolver%20uma%20demanda%20de%20impress%C3%A3o%2C%20papelaria%20ou%20material%20gr%C3%A1fico." target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Leaflet OpenSource Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // ===== NAV: solid on scroll =====
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('is-solid', window.scrollY > 60);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ===== MOBILE SHEET =====
+    const sheet = document.getElementById('sheet');
+    const overlay = document.getElementById('sheetOverlay');
+    const toggle = document.getElementById('navToggle');
+    const closeBtn = document.getElementById('sheetClose');
+    const setSheet = (open) => {
+      sheet.classList.toggle('is-open', open);
+      overlay.hidden = !open;
+      sheet.setAttribute('aria-hidden', String(!open));
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    toggle.addEventListener('click', () => setSheet(!sheet.classList.contains('is-open')));
+    overlay.addEventListener('click', () => setSheet(false));
+    closeBtn.addEventListener('click', () => setSheet(false));
+    sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setSheet(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setSheet(false); });
+
+    // ===== REVEAL ON SCROLL =====
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reveals = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      reveals.forEach(el => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach(el => io.observe(el));
+    }
+
+    // ===== OPENSOURCE LEAFLET + OPENSTREETMAP =====
+    const lat = -23.0847, lng = -47.2185;
+    const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 17);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+    }).addTo(map);
+    L.marker([lat, lng]).addTo(map).bindPopup(`
+      <div style="font-family: 'Archivo', sans-serif; text-align: center; padding: 4px;">
+        <strong style="color: #0C5230; font-size: 14px;">Kennedy Gráfica Rápida &amp; Papelaria</strong><br>
+        <span style="font-size: 12px; color: #444;">Av. Pres. Kennedy, 826 — Indaiatuba/SP</span><br><br>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener" style="background:#0C5230;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;display:inline-block;">Abrir no Google Maps</a>
+      </div>
+    `).openPopup();
+  </script>
+</body>
+</html>
