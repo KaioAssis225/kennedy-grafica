@@ -6,6 +6,7 @@
   <title>Kennedy Gráfica Rápida & Papelaria — Indaiatuba/SP</title>
   <meta name="description" content="Impressão, plotagem, fotos 3x4, revelação de fotos, cartão de visita, adesivos, rótulos e papelaria — na hora, em Indaiatuba/SP. Atendimento presencial e por WhatsApp.">
   <meta name="theme-color" content="#0C5230">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
@@ -54,7 +55,7 @@
 
   <!-- MOBILE SHEET -->
   <div class="sheet-overlay" id="sheetOverlay" hidden></div>
-  <aside class="sheet" id="sheet" aria-hidden="true">
+  <aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
     <div class="sheet-top">
       <span class="brand-name brand-name--dark">Kennedy<span class="brand-sub">Gráfica &amp; Papelaria</span></span>
       <button class="sheet-close" id="sheetClose" aria-label="Fechar menu">
@@ -113,6 +114,7 @@
         <h3 class="group-title reveal"><span class="group-mark" aria-hidden="true"></span>Na hora, no balcão</h3>
         <div class="swatches swatches--n4">
           <article class="swatch reveal" style="--chip:#168249">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Verde 168</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Impressão</h4>
@@ -125,6 +127,7 @@
             </figure>
           </article>
           <article class="swatch reveal" style="--chip:#C0392B">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Vermelho 32</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Fotos 3x4</h4>
@@ -137,6 +140,7 @@
             </figure>
           </article>
           <article class="swatch reveal" style="--chip:#E8A33D">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Âmbar 08</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Fotos &amp; revelação</h4>
@@ -149,6 +153,7 @@
             </figure>
           </article>
           <article class="swatch reveal" style="--chip:#B8902A">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Mostarda 90</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Material de escritório</h4>
@@ -165,6 +170,7 @@
         <h3 class="group-title reveal"><span class="group-mark" aria-hidden="true"></span>Sob medida &amp; empresas</h3>
         <div class="swatches swatches--n5">
           <article class="swatch reveal" style="--chip:#1B1712">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Preto K</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Cartão de visita</h4>
@@ -177,6 +183,7 @@
             </figure>
           </article>
           <article class="swatch reveal" style="--chip:#C0397A">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Magenta 74</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Adesivos &amp; rótulos</h4>
@@ -189,6 +196,7 @@
             </figure>
           </article>
           <article class="swatch reveal" style="--chip:#127D6E">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Teal 46</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Adesivos de recorte</h4>
@@ -201,6 +209,7 @@
             </figure>
           </article>
           <article class="swatch reveal" style="--chip:#6D5AA6">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Violeta 58</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Banners &amp; fotos grandes</h4>
@@ -213,6 +222,7 @@
             </figure>
           </article>
           <article class="swatch reveal" style="--chip:#1E7FA8">
+            <span class="swatch-hint" aria-hidden="true">toque para ver</span>
             <div class="swatch-chip"><span class="swatch-stock">Ciano 79</span></div>
             <div class="swatch-body">
               <h4 class="swatch-name">Plotagem</h4>
@@ -306,12 +316,26 @@
       sheet.setAttribute('aria-hidden', String(!open));
       toggle.setAttribute('aria-expanded', String(open));
       document.body.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        closeBtn.focus();
+      } else if (sheet.contains(document.activeElement)) {
+        toggle.focus();
+      }
     };
     toggle.addEventListener('click', () => setSheet(!sheet.classList.contains('is-open')));
     overlay.addEventListener('click', () => setSheet(false));
     closeBtn.addEventListener('click', () => setSheet(false));
     sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setSheet(false)));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setSheet(false); });
+
+    // Trap Tab focus inside the open sheet (basic dialog pattern)
+    sheet.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !sheet.classList.contains('is-open')) return;
+      const focusables = Array.from(sheet.querySelectorAll('a, button'));
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
 
     // ===== REVEAL ON SCROLL =====
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -344,18 +368,31 @@
 
     // ===== OPENSOURCE LEAFLET + OPENSTREETMAP =====
     const lat = -23.0847, lng = -47.2185;
-    const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 17);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
-    }).addTo(map);
-    L.marker([lat, lng]).addTo(map).bindPopup(`
-      <div style="font-family: 'Archivo', sans-serif; text-align: center; padding: 4px;">
-        <strong style="color: #0C5230; font-size: 14px;">Kennedy Gráfica Rápida &amp; Papelaria</strong><br>
-        <span style="font-size: 12px; color: #444;">Av. Pres. Kennedy, 826 — Indaiatuba/SP</span><br><br>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener" style="background:#0C5230;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;display:inline-block;">Abrir no Google Maps</a>
-      </div>
-    `).openPopup();
+    try {
+      if (typeof L === 'undefined') throw new Error('Leaflet failed to load');
+      const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 17);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+      }).addTo(map);
+      L.marker([lat, lng]).addTo(map).bindPopup(`
+        <div style="font-family: 'Archivo', sans-serif; text-align: center; padding: 4px;">
+          <strong style="color: #0C5230; font-size: 14px;">Kennedy Gráfica Rápida &amp; Papelaria</strong><br>
+          <span style="font-size: 12px; color: #444;">Av. Pres. Kennedy, 826 — Indaiatuba/SP</span><br><br>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener" style="background:#0C5230;color:#fff;text-decoration:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;display:inline-block;">Abrir no Google Maps</a>
+        </div>
+      `).openPopup();
+    } catch (err) {
+      // Map CDN unreachable: keep the address findable without the map.
+      const mapEl = document.getElementById('map');
+      if (mapEl) {
+        mapEl.innerHTML = `
+          <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;background:#e8e2d4;color:#1A1712;font-family:'Archivo',sans-serif;">
+            <strong>Avenida Presidente Kennedy, 826 — Indaiatuba/SP</strong>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener" style="background:#0C5230;color:#fff;text-decoration:none;padding:8px 16px;border-radius:6px;font-weight:700;">Abrir no Google Maps</a>
+          </div>`;
+      }
+    }
   </script>
 </body>
 </html>

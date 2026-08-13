@@ -521,10 +521,13 @@ a { text-decoration: none; color: inherit; }
   .swatch:hover .swatch-photo { opacity: 1; }
   .swatch:hover .swatch-photo img { transform: scale(1); }
 }
-/* Touch devices: no hover, so hint that the swatch is tappable */
+/* Touch devices: no hover, so hint that the swatch is tappable.
+   Real element (not ::before content) so it never reaches the a11y tree;
+   aria-hidden is the actual guarantee, decorative for sighted touch users only. */
+.swatch-hint { display: none; }
 @media (hover: none) {
-  .swatch::before {
-    content: "toque para ver";
+  .swatch-hint {
+    display: inline-block;
     position: absolute;
     top: 8px;
     right: 8px;
@@ -540,7 +543,7 @@ a { text-decoration: none; color: inherit; }
     border-radius: 4px;
     box-shadow: var(--shadow-sm);
   }
-  .swatch.is-active::before { display: none; }
+  .swatch.is-active .swatch-hint { display: none; }
 }
 .swatch-photo figcaption {
   position: absolute;
@@ -668,13 +671,16 @@ a { text-decoration: none; color: inherit; }
 }
 .wa-float:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 12px 30px rgba(6, 46, 26, 0.5); }
 
-/* ===== REVEAL ===== */
+/* ===== REVEAL =====
+   Hidden state lives behind .js (set by an early inline script) so that if
+   JavaScript fails to run, every .reveal element stays visible by default
+   instead of stuck at opacity:0. will-change is scoped to the pre-animate
+   window only, not left resident after the element has settled. */
 .reveal {
-  opacity: 0;
-  transform: translateY(16px);
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
+.js .reveal { opacity: 0; transform: translateY(16px); }
+.js .reveal:not(.in) { will-change: opacity, transform; }
 .reveal.in { opacity: 1; transform: none; }
 .swatches .swatch:nth-child(2) { transition-delay: 0.05s; }
 .swatches .swatch:nth-child(3) { transition-delay: 0.1s; }
@@ -712,6 +718,6 @@ a { text-decoration: none; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
   .swatch:hover { transform: none; }
 }
