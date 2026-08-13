@@ -327,6 +327,21 @@
       reveals.forEach(el => io.observe(el));
     }
 
+    // ===== SWATCH TAP-TO-REVEAL (touch devices, no hover) =====
+    if (window.matchMedia('(hover: none)').matches) {
+      const swatches = document.querySelectorAll('.swatch');
+      swatches.forEach(sw => {
+        sw.addEventListener('click', () => {
+          const wasActive = sw.classList.contains('is-active');
+          swatches.forEach(s => s.classList.remove('is-active'));
+          if (!wasActive) sw.classList.add('is-active');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.swatch')) swatches.forEach(s => s.classList.remove('is-active'));
+      });
+    }
+
     // ===== OPENSOURCE LEAFLET + OPENSTREETMAP =====
     const lat = -23.0847, lng = -47.2185;
     const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 17);
