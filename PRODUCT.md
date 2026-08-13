@@ -69,8 +69,8 @@ Real, confirmed business facts (must be preserved exactly):
 Assets present in `img/`: `header-logo.png`, `impressao.jpg`, `plotagem.jpg`, `cartao-visita.jpg`, `adesivos-rotulos.jpg`, `adesivos-recorte.jpg`.
 
 Gaps and risks future work must respect:
-- Several service images are currently hot-linked from Google Sites CDN URLs (`lh3.googleusercontent.com/sitesv/...`) for Fotos, Fotos 3x4, Banners e Fotos, and Material de Escritório. These are external and may break; they should be downloaded and self-hosted.
 - No customer reviews, testimonials, ratings, pricing, or turnaround-time guarantees exist. Do not fabricate any of these; add such claims only with owner-provided content.
+- **Map coordinates are approximate, not exact.** OpenStreetMap has no house-number-level data for Av. Pres. Kennedy, 826, so the pin (`-23.0810, -47.2084`) is a street-corridor centroid within Cidade Nova I, not a verified building location — it replaced an earlier pin that was geocoded wrong entirely (landed in a different neighborhood, Centro/Jardim Pau Preto). Refine with exact coordinates from Google Maps (search the business or address there, right-click the real pin, copy lat/lng) as soon as the owner can provide them.
 
 ## Product Principles
 
